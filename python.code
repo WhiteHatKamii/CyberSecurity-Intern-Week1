@@ -1,0 +1,27 @@
+Below is the Python code for hashing a password using SHA-256 and salting:
+
+  ```python
+  import hashlib
+  import os  # For generating a random salt
+
+  def hashing_method(passwd_hash, salt):
+      # Combine the password with the salt and hash the result
+      salted_passwd = passwd_hash + salt
+      hash1 = hashlib.sha256(salted_passwd.encode())  # Using SHA-256 hashing
+      print('Your salted and hashed password is:', hash1.hexdigest())
+
+  def main():
+      print('Password hashing script with salting')
+      passwd_hash = input('Enter password to hash: ')  # Get password from user
+
+      # Generate a random salt (16 bytes)
+      salt = os.urandom(16).hex()  # Convert random bytes to a hex string
+
+      # Print the salt (to simulate storing it in a database)
+      print('Salt used:', salt)
+
+      # Call hashing method with password and salt
+      hashing_method(passwd_hash, salt)
+
+  if __name__ == '__main__':
+      main()
